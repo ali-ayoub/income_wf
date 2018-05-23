@@ -38,7 +38,7 @@
         }
         #features {
             top: 0;
-            height: 100px;
+            height: 150px;
             margin-top: 20px;
             width: 310px;
         }
@@ -66,7 +66,7 @@
 <body>
 
 <div id='map'></div>
-<div class='map-overlay' id='features'><h2>Median Household Income</h2><div id='pd'><p>Hover over a zipcode!</p></div></div>
+<div class='map-overlay' id='features'><h2>Whole Foods Locations vs. Median Household Income</h2><div id='pd'><p>Zoom in for more detailed data</p></div></div>
 <div class='map-overlay' id='legend'></div>
 
 <script>
@@ -93,8 +93,8 @@ map.on('load', function() {
     map.getCanvas().style.cursor = 'default';
 
     // define layer names
-    var layers = ['<h4>Median Household Income(USD)</h4>', '0-19,606', '19,607-30,000', '30,001-40,000', '40,001-50,000', '50,001-60,000', '60,001-70,000', '70,001-80,000', '80,001-90,000', '90,001-100,000', '100,001-150,000', '150,000-250,000'];
-    var colors = ['', '#f7fbff', '#e2eef9', '#cde0f2', '#b0d2e8', '#89bfdd', '#60a6d2', '#3e8ec4', '#2172b6','#0a549e', '#08306b', '#032b45'];
+    var layers = ['Whole Foods', "Trader Joe's", '<h4>Median Household Income in USD (Census, 2016)</h4>', '0-19,606', '19,607-30,000', '30,001-40,000', '40,001-50,000', '50,001-60,000', '60,001-70,000', '70,001-80,000', '80,001-90,000', '90,001-100,000', '100,001-150,000', '150,000-250,000'];
+    var colors = ['#2d786e', '#c50033', '', '#f7fbff', '#e2eef9', '#cde0f2', '#b0d2e8', '#89bfdd', '#60a6d2', '#3e8ec4', '#2172b6','#0a549e', '#08306b', '#032b45'];
 
     // create legend
     for (i=0; i<layers.length; i++) {
@@ -122,11 +122,11 @@ map.on('load', function() {
         });
 
         if (zipcode.length > 0) {
-            document.getElementById('pd').innerHTML = "</h3><p>" + "<strong>ZCTA: </strong>" + zipcode[0].properties.Geography + "</h3><p>" + "<strong>$USD </strong>" + zipcode[0].properties.median_household_income;
+            document.getElementById('pd').innerHTML = "</h3><p>" + "<strong>ZCTA: </strong>" + zipcode[0].properties.Geography + "</h3><p>" + "<strong>USD </strong>" + zipcode[0].properties.median_household_income;
         } else if (state.length > 0) {
-            document.getElementById('pd').innerHTML = "</h3><p>" + "<strong>State: </strong>" + state[0].properties.Geography + "</h3><p>" + "<strong>$USD </strong>" + state[0].properties.median_household_income;
+            document.getElementById('pd').innerHTML = "</h3><p>" + "<strong>State: </strong>" + state[0].properties.Geography + "</h3><p>" + "<strong>USD </strong>" + state[0].properties.median_household_income;
         } else {
-            document.getElementById('pd').innerHTML = '<p>Hover over an area!</p>';
+            document.getElementById('pd').innerHTML = '<p>Zoom in for more detailed data</p>';
         }
     });
 
